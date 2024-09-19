@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import './App.css'; // We'll create this file next
 
 function App() {
   const [users, setUsers] = useState([]);
@@ -45,30 +46,38 @@ function App() {
 
   return (
     <div className="App">
-      <h1>Rust + React App</h1>
-      <form onSubmit={handleRegister}>
-        <input
-          type="text"
-          placeholder="Username"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-        />
-        <input
-          type="password"
-          placeholder="Password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
-        <button type="submit">Register</button>
-      </form>
-      <button onClick={handleLogin}>Login</button>
-      <p>{message}</p>
-      <h2>Users:</h2>
-      <ul>
-        {users.map((user, index) => (
-          <li key={index}>{user}</li>
-        ))}
-      </ul>
+      <header className="App-header">
+        <h1>Rust + React App</h1>
+      </header>
+      <main>
+        <section className="form-section">
+          <form onSubmit={handleRegister}>
+            <input
+              type="text"
+              placeholder="Username"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+            />
+            <input
+              type="password"
+              placeholder="Password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+            <button type="submit">Register</button>
+          </form>
+          <button onClick={handleLogin}>Login</button>
+        </section>
+        {message && <p className="message">{message}</p>}
+        <section className="users-section">
+          <h2>Users:</h2>
+          <ul>
+            {users.map((user, index) => (
+              <li key={index}>{user}</li>
+            ))}
+          </ul>
+        </section>
+      </main>
     </div>
   );
 }
